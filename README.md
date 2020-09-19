@@ -9,4 +9,7 @@ passwd <user>
 
 ## Display directory tree and file contents
 find dummy/ -type f | xargs head -v
+
 grep -F '' -r dummy/
+
+puppet agent --test --debug --noop --show-diff

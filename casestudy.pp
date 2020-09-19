@@ -22,7 +22,10 @@ $user_directories.each |String $directory| {
     # Check if path starts with home directory path
     if $home_directory in $directory {
       $sub_paths = dirtree($directory, $home_directory)
-      ensure_resource('file', $sub_paths, {'ensure' => 'directory'})
+      ensure_resource('file', $sub_paths, {
+        'ensure' => 'directory',
+        'owner' => $::user,
+        'group' => $::user})
 
       file { "${directory}/info.txt":
         ensure  => file,
@@ -59,12 +62,21 @@ define create_info_txt ($target_path = $name) {
 
   file { "${target_path}/info.txt":
     ensure  => file,
-    content => "${content}\n"
+    content => "${content}\n",
+    owner   => $::user,
+    group   => $::user
   }
 }
 
 # Ensures that all directories in path are created
 define create_dir_tree ($directory = $name) {
+  # Generates all sub paths, e.g. ['/foo', '/foo/bar', '/foo/bar/baz']
   $sub_paths = dirtree($directory, $::home_directory)
-  ensure_resource('file', $sub_paths, {'ensure' => 'directory'})
+
+  # Ensures that no duplicate resources are declared
+  ensure_resource('file', $sub_paths, {
+    'ensure' => 'directory',
+    'owner'  => $::user,
+    'group'  => $::user
+    })
 }
