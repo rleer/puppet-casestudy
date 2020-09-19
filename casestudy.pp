@@ -1,6 +1,6 @@
 $user = 'dummy'
 $home_directory = "/home/${user}"
-$user_directories = ['foo', 'bar', 'baz/tar']
+$user_directories = ['/home/dummy/foo', 'bar', 'baz/tar', 'baz/qux']
 
 if !empty($user_directories) {
   # Make sure user exists
