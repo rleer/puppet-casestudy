@@ -5,8 +5,8 @@ node 'default' {
 
   class { 'casestudy':
     user             => $user,
-    home_directory   => $home_directory,
-    user_directories => $user_directories
+    user_directories => $user_directories,
+    home_directory   => $home_directory
   }
 }
 
@@ -20,8 +20,8 @@ node 'default' {
 # @example
 #   class { 'casestudy':
 #     user             => 'johndoe',
-#     home_directory   => '/home/johndoe',
-#     user_directories => ['foo', 'foo/bar']
+#     user_directories => ['foo', 'foo/bar'],
+#     home_directory   => '/home/johndoe'
 #   }
 #
 # @note
@@ -31,15 +31,15 @@ node 'default' {
 #
 # @param user
 #   Names the user id
-# @param home_directory
-#   Defines the path to the given user's home directory
 # @param user_directories
 #   Defines an array of directory paths that will be created
+# @param home_directory
+#   Defines the path to the given user's home directory
 #
 class casestudy(
   String $user,
-  String $home_directory          = "/home/${user}",
-  Array[String] $user_directories = undef
+  Array[String] $user_directories,
+  String $home_directory = "/home/${user}"
 ) {
   if !empty($user_directories) {
     # Makes sure the user exists
