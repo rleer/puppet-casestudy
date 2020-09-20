@@ -99,7 +99,7 @@ class casestudy(
 #   }
 #
 # @note
-#   An absolut path as the target directory is expected.
+#   Expects an absolut path as the target directory.
 #
 # @param target_path
 #   Defines the path to the target directory
