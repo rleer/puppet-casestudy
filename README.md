@@ -13,3 +13,9 @@ find dummy/ -type f | xargs head -v
 grep -F '' -r dummy/
 
 puppet agent --test --debug --noop --show-diff
+
+## Puppet modules
+
+puppet module install pltraining-dirtree --version 0.3.0
+
+puppet module install puppetlabs-stdlib --version 6.4.0
