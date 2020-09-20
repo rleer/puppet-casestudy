@@ -19,4 +19,8 @@
 # #   content => $content
 # # }
 # notice($parent_dir)
-notice($path)
+$homedir = '/home/rid'
+if '/home/rid/foo' =~ Regexp("^${homedir}") {
+# if '/home/rid/foo' =~ /^${homedir}/ {
+  notice('match')
+}
