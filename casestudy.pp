@@ -63,8 +63,8 @@ class casestudy(
       if $directory =~ Regexp("^${home_directory}") {
 
         casestudy::user_directory { $directory:
-          user_id        => $user,
-          exclusion_path => $home_directory
+          exclusion_path => $home_directory,
+          user_id        => $user
         }
 
         casestudy::infofile { $directory:
@@ -108,7 +108,7 @@ class casestudy(
 #
 define casestudy::infofile (
   String $target_path = $name,
-  String $user_id     = undef
+  String $user_id     = 'root'
 ) {
   # Get the name of the target directory, e.g. 'foo' in '/path/to/foo'
   $target_dir = $target_path.match('[a-zA-Z]+$')
@@ -146,7 +146,7 @@ define casestudy::infofile (
 define casestudy::user_directory (
   String $target_dir     = $name,
   String $exclusion_path = undef,
-  String $user_id        = undef
+  String $user_id        = 'root'
 ) {
   # Generates all sub paths, e.g. ['/path', '/path/to', '/path/to/target']
   if empty($exclusion_path) {
