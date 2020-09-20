@@ -10,7 +10,6 @@ node 'default' {
   }
 }
 
-
 # @summary
 #   Populates the user's home directory from given list of directories. Each new 
 #   directory contains a 'info.txt' file containing the target's directory name.
@@ -36,7 +35,7 @@ node 'default' {
 # @param home_directory
 #   Defines the path to the given user's home directory
 #
-class casestudy(
+class casestudy (
   String $user,
   Array[String] $user_directories,
   String $home_directory = "/home/${user}"
